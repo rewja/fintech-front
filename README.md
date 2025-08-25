@@ -12,5 +12,5 @@
   
 3.  **Run development server**
    ```bash
-npm run dev
-```
+   npm run dev
+   ```
