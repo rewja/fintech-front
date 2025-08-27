@@ -25,31 +25,52 @@ export default function ProdukCreate() {
   };
 
   return (
-    <div>
+    <div className="min-h-screen bg-[#F5F0E9] text-[#112250]">
       <Navbar />
-      <BackButton />
-      <h2>Tambah Produk</h2>
-      <form onSubmit={onSubmit}>
-        <input name="name" placeholder="Nama" onChange={onChange} />
-        <br />
-        <input
-          name="price"
-          type="number"
-          placeholder="Harga"
-          onChange={onChange}
-        />
-        <br />
-        <input
-          name="stock"
-          type="number"
-          placeholder="Stok"
-          onChange={onChange}
-        />
-        <br />
-        {err && <small style={{ color: "red" }}>{err}</small>}
-        <br />
-        <button type="submit">Simpan</button>
-      </form>
+      <div className="max-w-xl mx-auto mt-10 p-8 bg-white rounded-2xl shadow-sm border border-[#D9CBC2]">
+        <BackButton />
+        <h2 className="text-2xl font-semibold tracking-tight mb-6">
+          Tambah Produk
+        </h2>
+
+        <div className="h-[2px] w-16 bg-[#E0C58F] rounded mb-8" />
+
+        <form onSubmit={onSubmit} className="space-y-5">
+          <input
+            name="name"
+            placeholder="Nama Produk"
+            onChange={onChange}
+            className="w-full px-4 py-2 rounded-lg border border-[#D9CBC2] bg-white placeholder:text-[#3C507D]/60 focus:outline-none focus:ring-2 focus:ring-[#3C507D] focus:border-[#3C507D] transition"
+          />
+
+          <input
+            name="price"
+            type="number"
+            placeholder="Harga"
+            onChange={onChange}
+            className="w-full px-4 py-2 rounded-lg border border-[#D9CBC2] bg-white placeholder:text-[#3C507D]/60 focus:outline-none focus:ring-2 focus:ring-[#3C507D] focus:border-[#3C507D] transition"
+          />
+
+          <input
+            name="stock"
+            type="number"
+            placeholder="Stok"
+            onChange={onChange}
+            className="w-full px-4 py-2 rounded-lg border border-[#D9CBC2] bg-white placeholder:text-[#3C507D]/60 focus:outline-none focus:ring-2 focus:ring-[#3C507D] focus:border-[#3C507D] transition"
+          />
+
+          {err && (
+            <small className="block text-red-600 font-medium">{err}</small>
+          )}
+
+          <button
+            type="submit"
+            className="w-full py-2.5 px-4 rounded-lg font-medium shadow-sm bg-[#112250] hover:bg-[#3C507D] text-[#F5F0E9] transition"
+          >
+            Simpan
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

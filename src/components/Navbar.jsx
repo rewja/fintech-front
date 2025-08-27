@@ -25,30 +25,36 @@ export default function Navbar() {
   };
 
   return (
-    <nav style={{ background: "#eee", padding: "10px", marginBottom: "20px" }}>
-      {/* Dashboard sesuai role */}
-      {role === "admin" && <Link to="/admin/dashboard">Dashboard</Link>}
-      {role === "bank" && <Link to="/bank/dashboard">Dashboard</Link>}
-      {(role === "canteen" || role === "bc") && (
-        <Link to="/canteen/dashboard">Dashboard</Link>
-      )}
-      {role === "student" && <Link to="/student/dashboard">Dashboard</Link>}
+    <nav className="bg-gray-900 text-white shadow-md px-6 py-3 flex items-center justify-between">
+      {/* Left: Logo */}
+      <div className="text-lg font-bold tracking-wide">Fintech App</div>
 
-      {/* Common links */}
-      {" | "}
-      <Link to="/transactions">Transaksi</Link>{" | "}
-      <Link to="/reports">Report</Link>{" | "}
-      <Link to="/balance">Saldo</Link>
+      {/* Center: Links */}
+      <div className="space-x-6">
+        {/* Dashboard sesuai role */}
+        {role === "admin" && <Link to="/admin/dashboard" className="hover:text-yellow-400">Dashboard</Link>}
+        {role === "bank" && <Link to="/bank/dashboard" className="hover:text-yellow-400">Dashboard</Link>}
+        {(role === "canteen" || role === "bc") && (
+          <Link to="/canteen/dashboard" className="hover:text-yellow-400">Dashboard</Link>
+        )}
+        {role === "student" && <Link to="/student/dashboard" className="hover:text-yellow-400">Dashboard</Link>}
 
-      {/* khusus canteen/bc/admin */}
-      {(role === "canteen" || role === "bc" || role === "admin") && (
-        <>
-          {" | "}
-          <Link to="/products">Produk</Link>
-        </>
-      )}
+        {/* Common links */}
+        <Link to="/transactions" className="hover:text-yellow-400">Transaksi</Link>
+        <Link to="/reports" className="hover:text-yellow-400">Report</Link>
+        <Link to="/balance" className="hover:text-yellow-400">Saldo</Link>
 
-      <button onClick={handleLogout} style={{ marginLeft: "20px" }}>
+        {/* khusus canteen/bc/admin */}
+        {(role === "canteen" || role === "bc" || role === "admin") && (
+          <Link to="/products" className="hover:text-yellow-400">Produk</Link>
+        )}
+      </div>
+
+      {/* Right: Logout */}
+      <button
+        onClick={handleLogout}
+        className="bg-red-600 hover:bg-red-700 px-4 py-1 rounded-md font-medium transition"
+      >
         Logout
       </button>
     </nav>
