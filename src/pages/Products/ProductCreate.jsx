@@ -25,49 +25,66 @@ export default function ProdukCreate() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F5F0E9] text-[#112250]">
+    <div className="min-h-screen bg-gradient-to-br from-sapphire via-royalblue to-quicksand">
       <Navbar />
-      <div className="max-w-xl mx-auto mt-10 p-8 bg-white rounded-2xl shadow-sm border border-[#D9CBC2]">
+
+      <div className="max-w-lg mx-auto mt-12 p-8 bg-white rounded-2xl shadow-xl">
         <BackButton />
-        <h2 className="text-2xl font-semibold tracking-tight mb-6">
+        <h2 className="text-2xl font-bold text-sapphire mb-3">
           Tambah Produk
         </h2>
+        <div className="h-[3px] w-20 bg-gradient-to-r from-sapphire to-royalblue rounded mb-8" />
 
-        <div className="h-[2px] w-16 bg-[#E0C58F] rounded mb-8" />
+        <form onSubmit={onSubmit} className="space-y-6">
+          <div>
+            <label className="block text-sm font-medium text-gray-600 mb-1">
+              Nama Produk
+            </label>
+            <input
+              name="name"
+              placeholder="Masukkan nama produk"
+              onChange={onChange}
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-sapphire focus:border-sapphire transition"
+            />
+          </div>
 
-        <form onSubmit={onSubmit} className="space-y-5">
-          <input
-            name="name"
-            placeholder="Nama Produk"
-            onChange={onChange}
-            className="w-full px-4 py-2 rounded-lg border border-[#D9CBC2] bg-white placeholder:text-[#3C507D]/60 focus:outline-none focus:ring-2 focus:ring-[#3C507D] focus:border-[#3C507D] transition"
-          />
+          <div>
+            <label className="block text-sm font-medium text-gray-600 mb-1">
+              Harga
+            </label>
+            <input
+              name="price"
+              type="number"
+              placeholder="Masukkan harga"
+              onChange={onChange}
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-sapphire focus:border-sapphire transition"
+            />
+          </div>
 
-          <input
-            name="price"
-            type="number"
-            placeholder="Harga"
-            onChange={onChange}
-            className="w-full px-4 py-2 rounded-lg border border-[#D9CBC2] bg-white placeholder:text-[#3C507D]/60 focus:outline-none focus:ring-2 focus:ring-[#3C507D] focus:border-[#3C507D] transition"
-          />
-
-          <input
-            name="stock"
-            type="number"
-            placeholder="Stok"
-            onChange={onChange}
-            className="w-full px-4 py-2 rounded-lg border border-[#D9CBC2] bg-white placeholder:text-[#3C507D]/60 focus:outline-none focus:ring-2 focus:ring-[#3C507D] focus:border-[#3C507D] transition"
-          />
+          <div>
+            <label className="block text-sm font-medium text-gray-600 mb-1">
+              Stok
+            </label>
+            <input
+              name="stock"
+              type="number"
+              placeholder="Masukkan jumlah stok"
+              onChange={onChange}
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-sapphire focus:border-sapphire transition"
+            />
+          </div>
 
           {err && (
-            <small className="block text-red-600 font-medium">{err}</small>
+            <div className="p-3 rounded-lg bg-red-100 text-red-700 text-sm font-medium">
+              {err}
+            </div>
           )}
 
           <button
             type="submit"
-            className="w-full py-2.5 px-4 rounded-lg font-medium shadow-sm bg-[#112250] hover:bg-[#3C507D] text-[#F5F0E9] transition"
+            className="w-full py-3 rounded-lg font-semibold shadow-md bg-gradient-to-r from-sapphire to-royalblue hover:opacity-90 text-white transition"
           >
-            Simpan
+            Simpan Produk
           </button>
         </form>
       </div>
