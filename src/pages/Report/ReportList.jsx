@@ -1,66 +1,43 @@
+// src/pages/Report/ReportList.jsx
 import { useEffect, useState } from "react";
-import { getProducts, deleteProduct } from "../../services/productService";
+import { getReports } from "../../services/reportService";
+import { formatDateTime } from "../../utils/formatDate";
 import Navbar from "../../components/Navbar";
 import BackButton from "../../components/BackBbutton";
 
-export default function ProdukList() {
-  const [produk, setProduk] = useState([]);
+export default function ReportList(){
+  const [data, setData] = useState([]);
   const [err, setErr] = useState("");
 
-  const loadData = async () => {
-    try {
-      const res = await getProducts();
-      setProduk(res.data.data || []);
-    } catch {
-      setErr("Gagal memuat produk");
-    }
-  };
-
-  const handleDelete = async (id) => {
-    if (!window.confirm("Yakin hapus produk ini?")) return;
-    try {
-      await deleteProduct(id);
-      loadData();
-    } catch {
-      alert("Gagal menghapus produk");
-    }
-  };
-
-  useEffect(() => {
-    loadData();
+  useEffect(()=> {
+    (async ()=>{
+      try { 
+        const res = await getReports();
+        setData(res.data.data || []);
+      } catch { setErr("Gagal memuat report"); }
+    })();
   }, []);
 
   return (
     <div>
-      <Navbar />
-      <BackButton />
-      <h2>Produk Saya</h2>
-      <a href="/produk/create">+ Tambah Produk</a>
-      {err && <p style={{ color: "red" }}>{err}</p>}
-      <table border="1" cellPadding="5">
-        <thead>
-          <tr>
-            <th>Nama</th>
-            <th>Harga</th>
-            <th>Aksi</th>
-          </tr>
-        </thead>
+            <Navbar />
+            <BackButton />
+      <h2>Report (All sesuai role)</h2>
+      {err && <p style={{color:"red"}}>{err}</p>}
+      <table border="1" cellPadding="6">
+        <thead><tr><th>ID</th><th>Jenis</th><th>Amount</th><th>User</th><th>To</th><th>Waktu</th></tr></thead>
         <tbody>
-          {produk.map((p) => (
-            <tr key={p.id}>
-              <td>{p.nama}</td>
-              <td>{p.harga}</td>
-              <td>
-                <a href={`/produk/edit/${p.id}`}>Edit</a> |{" "}
-                <button onClick={() => handleDelete(p.id)}>Hapus</button>
-              </td>
+          {data.map(t=>(
+            <tr key={t.id}>
+              <td>{t.id}</td>
+              <td>{t.type}</td>
+              <td>{t.amount}</td>
+              <td>{t.user?.name}</td>
+              <td>{t.to_user?.name || "-"}</td>
+              <td>{formatDateTime(t.created_at)}</td>
             </tr>
           ))}
-          {produk.length === 0 && (
-            <tr>
-              <td colSpan="3">Belum ada produk</td>
-            </tr>
-          )}
+          {data.length===0 && <tr><td colSpan="6">Kosong</td></tr>}
         </tbody>
       </table>
     </div>
