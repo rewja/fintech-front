@@ -54,6 +54,7 @@ export default function AdminDashboard() {
             <p className="text-gray-400 text-sm text-center">
               Pantau dan kelola semua transaksi yang terjadi di sistem.
             </p>
+ 
           </Link>
 
           <Link
@@ -64,6 +65,7 @@ export default function AdminDashboard() {
             <p className="text-gray-400 text-sm text-center">
               Kelola produk yang tersedia untuk semua user.
             </p>
+          
           </Link>
         </div>
       </div>

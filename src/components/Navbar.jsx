@@ -77,6 +77,7 @@ export default function Navbar() {
           <LogOut size={18} /> Logout
         </button>
       </div>
+
     </nav>
   );
 }
