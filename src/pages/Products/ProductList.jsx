@@ -75,18 +75,20 @@ export default function ProdukList() {
                   >
                     <td className="px-4 py-2">{p.id}</td>
                     <td className="px-4 py-2">{p.name}</td>
-                    <td className="px-4 py-2">Rp{p.price.toLocaleString("id-ID")}</td>
+                    <td className="px-4 py-2">
+                      Rp{p.price.toLocaleString("id-ID")}
+                    </td>
                     <td className="px-4 py-2">{p.stock}</td>
                     <td className="px-4 py-2 space-x-3">
                       <Link
                         to={`/products/edit/${p.id}`}
-                        className="text-[#3C507D] hover:underline"
+                        className="px-3 py-1 rounded-md text-sm font-medium bg-[#3C507D] text-white hover:bg-[#112250] transition"
                       >
                         Edit
                       </Link>
                       <button
                         onClick={() => onDelete(p.id)}
-                        className="text-red-600 hover:underline"
+                        className="px-3 py-1 rounded-md text-sm font-medium bg-red-500 text-white hover:bg-red-600 transition"
                       >
                         Hapus
                       </button>
